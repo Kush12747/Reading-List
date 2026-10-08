@@ -1,71 +1,78 @@
-Personal Reading List 📚
+# Personal Reading List 📚
 
-A full-stack personal reading management application that allows users to create an account, log in, and manage their personal book collection.
+A full-stack personal reading management application that allows users to create an account, authenticate securely, and manage their personal book collection.
 
-Users can add books they want to read, track reading progress, update book details, and remove books from their collection through a clean and responsive dashboard.
+Users can add books, update reading progress, edit book details, and remove books from their library through a responsive dashboard interface.
 
-The frontend is built with React and communicates with a backend API to handle authentication and book management.
+---
 
-Features
-Authentication
-User registration
-User login
-JWT token-based authentication
-Protected dashboard access
-Logout functionality
-Book Management
+# Features
+
+## Authentication
+
+- User registration
+- User login
+- JWT token authentication
+- Protected dashboard access
+- Logout functionality
+
+## Book Management
 
 Users can:
 
-Add new books
-View their personal book collection
-Edit existing books
-Delete books
-Track reading status
+- Add new books
+- View their personal book collection
+- Edit existing books
+- Delete books
+- Track reading status
 
 Supported reading statuses:
 
-Want To Read
-Reading
-Completed
-Dashboard
+- Want To Read
+- Reading
+- Completed
+
+## Dashboard
 
 The dashboard provides:
 
-Navigation bar
-Book creation form
-Book collection display
-Book editing interface
-Reading library overview
-Screenshots
+- Navigation bar
+- Add book form
+- Book collection display
+- Edit book functionality
+- Delete functionality
+- Reading library overview
 
-(Add screenshots here)
+---
 
-Example:
+# Tech Stack
 
-/screenshots
-    login.png
-    dashboard.png
-    book-edit.png
-Tech Stack
-Frontend
-React
-React Router
-JavaScript (ES6+)
-CSS3
-Fetch API
-Local Storage
-Backend
+## Frontend
 
-API communication layer:
+- React
+- React Router
+- JavaScript (ES6+)
+- CSS3
+- Fetch API
+- Local Storage
 
-REST API
-JWT Authentication
-Development Tools
-npm
-Git
-VS Code
-Project Structure
+## Backend
+
+- REST API
+- JWT Authentication
+- Database persistence
+
+## Development Tools
+
+- npm
+- Git
+- VS Code
+
+---
+
+# Project Structure
+
+```
 src
 │
 ├── api
@@ -94,15 +101,22 @@ src
 │   └── DashboardPage.jsx
 │
 └── App.jsx
-Application Flow
-Authentication Flow
+```
+
+---
+
+# Application Flow
+
+## Authentication Flow
+
+```
 User
  |
  |
 Register
  |
  |
-Backend creates account
+Account Created
  |
  |
 Login
@@ -111,11 +125,17 @@ Login
 JWT Token Returned
  |
  |
-Token stored in Local Storage
+Token Stored In Local Storage
  |
  |
 Dashboard Access
-Book Management Flow
+```
+
+---
+
+## Book Management Flow
+
+```
 Dashboard
 
       |
@@ -130,32 +150,42 @@ Dashboard
       |
       |
       +---- Delete Book
-Components Overview
-AuthPage
+```
+
+---
+
+# Components Overview
+
+## AuthPage
 
 Controls switching between:
 
-Login form
-Registration form
+- Login
+- Register
 
-Uses React state:
+Uses React state to determine which authentication form is displayed.
 
+Example:
+
+```javascript
 const [showLogin, setShowLogin] = useState(true);
+```
 
-to determine which authentication component is displayed.
+---
 
-Login Component
+## Login Component
 
 Responsible for:
 
-Managing login form state
-Validating user input
-Sending login requests
-Saving JWT token
-Redirecting users to dashboard
+- Managing login form state
+- Validating user input
+- Sending login requests
+- Saving JWT token
+- Redirecting users to the dashboard
 
-Example flow:
+Login flow:
 
+```javascript
 const data = await login(loginData);
 
 localStorage.setItem(
@@ -164,37 +194,48 @@ localStorage.setItem(
 );
 
 navigate("/dashboard");
-Register Component
+```
+
+---
+
+## Register Component
 
 Handles:
 
-New user creation
-Registration validation
-Returning users to login after successful registration
-DashboardPage
+- Creating new users
+- Validating registration fields
+- Sending registration requests
+- Returning users to login after successful registration
 
-Main authenticated page.
+---
+
+## DashboardPage
+
+The main authenticated page.
 
 Responsibilities:
 
-Fetch user's books
-Display book form
-Display book list
+- Fetch user books
+- Display book creation form
+- Display book collection
 
-Uses:
+Books are loaded when the page mounts:
 
+```javascript
 useEffect(() => {
     loadBooks();
 }, []);
+```
 
-to load books when the page opens.
+---
 
-BookForm
+## BookForm
 
-Allows users to create books.
+Allows users to create new books.
 
-Book information:
+Book data:
 
+```javascript
 {
     title,
     author,
@@ -202,150 +243,240 @@ Book information:
     status,
     notes
 }
-BookList
+```
 
-Displays the user's collection.
+---
+
+## BookList
+
+Displays the user's books.
 
 Features:
 
-Rendering books
-Opening edit mode
-Deleting books
-EditBookForm
+- View books
+- Open edit mode
+- Delete books
+- Refresh collection after updates
+
+---
+
+## EditBookForm
 
 Allows users to update existing books.
 
-Uses the book ID:
+Updates books using their unique ID:
 
+```javascript
 updateBook(
     book.bookId,
     bookData
 );
+```
 
-to update the selected record.
+---
 
-Navbar
+## Navbar
 
-Provides:
+Provides application navigation.
 
-Dashboard navigation
-Logout functionality
+Features:
 
-Logout removes the stored JWT:
+- Dashboard navigation
+- Logout functionality
 
+Logout removes the stored JWT token:
+
+```javascript
 localStorage.removeItem("token");
-Installation
+```
+
+---
+
+# Installation
 
 Clone the repository:
 
+```bash
 git clone https://github.com/yourusername/personal-reading-list.git
+```
 
 Navigate into the project:
 
+```bash
 cd personal-reading-list
+```
 
 Install dependencies:
 
+```bash
 npm install
+```
 
-Run the development server:
+Start the development server:
 
+```bash
 npm run dev
-Environment Variables
+```
 
-Create a .env file:
+---
 
+# Environment Variables
+
+Create a `.env` file:
+
+```
 VITE_API_URL=http://localhost:8080/api
+```
 
-Example API usage:
+Example usage:
 
+```
 VITE_API_URL/api/books
-API Endpoints
-Authentication
-Register
+```
+
+---
+
+# API Endpoints
+
+## Authentication
+
+### Register
+
+```
 POST /api/auth/register
+```
 
-Request:
+Example request:
 
+```json
 {
     "name": "John Doe",
     "email": "john@email.com",
     "password": "password123"
 }
-Login
+```
+
+---
+
+### Login
+
+```
 POST /api/auth/login
+```
 
-Request:
+Example request:
 
+```json
 {
     "email": "john@email.com",
     "password": "password123"
 }
+```
 
-Response:
+Example response:
 
+```json
 {
     "token": "jwt-token"
 }
-Books
-Get Books
+```
+
+---
+
+# Books API
+
+## Get Books
+
+```
 GET /api/books
-Add Book
+```
+
+---
+
+## Add Book
+
+```
 POST /api/books
+```
 
 Example:
 
+```json
 {
-    "title":"Dune",
-    "author":"Frank Herbert",
-    "genre":"Sci-Fi",
-    "status":"READING",
-    "notes":"Great world building"
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "genre": "Sci-Fi",
+    "status": "READING",
+    "notes": "Great world building"
 }
-Update Book
+```
+
+---
+
+## Update Book
+
+```
 PUT /api/books/{id}
-Delete Book
+```
+
+---
+
+## Delete Book
+
+```
 DELETE /api/books/{id}
-UI Design
+```
+
+---
+
+# UI Design
 
 The application uses a modern neon-inspired interface.
 
 Design concepts:
 
-Dark background
-Neon gradients
-Glassmorphism cards
-Animated background lighting
-Responsive layouts
-Minimal visual clutter
+- Dark background
+- Neon gradients
+- Glassmorphism cards
+- Animated background effects
+- Responsive layouts
+- Clean user experience
 
 Color palette:
 
-Purple
+```
+Purple:
 #A855F7
 
-Blue
+Blue:
 #22D3EE
 
-Green
+Green:
 #9CFF2F
 
-Dark Background
+Dark Background:
 #070B17
-Future Improvements
+```
 
-Potential features:
+---
 
-Book cover images
-Search books
-Filter by reading status
-Reading statistics dashboard
-Favorites list
-Goodreads API integration
-User profiles
-Dark/light theme toggle
-Pagination
-Reviews and ratings
-Author
+# Future Improvements
+
+Possible future features:
+
+- Book cover images
+- Search functionality
+- Filter by reading status
+- Reading statistics
+- Favorite books
+- Goodreads API integration
+- User profiles
+- Theme switching
+- Pagination
+- Reviews and ratings
+
+---
+
+# Author
 
 Created by Kush Gandhi
