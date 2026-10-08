@@ -1,0 +1,505 @@
+.dashboard {
+
+    position: relative;
+
+    min-height: calc(100vh - 70px);
+
+    padding: 40px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #070b17,
+            #0d1325
+        );
+
+    overflow: hidden;
+}
+
+/* =======================
+   Background Glow
+======================= */
+
+.dashboard-bg {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    opacity: .25;
+
+    animation: floatGlow 12s ease-in-out infinite;
+
+}
+
+.glow-one {
+
+    width: 350px;
+    height: 350px;
+
+    background: #9f5cff;
+
+    top: -120px;
+    left: -100px;
+
+}
+
+.glow-two {
+
+    width: 300px;
+    height: 300px;
+
+    background: #37d7ff;
+
+    right: -80px;
+    bottom: -80px;
+
+    animation-delay: 3s;
+
+}
+
+/* =======================
+   Header
+======================= */
+
+.dashboard-header {
+
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 2rem;
+
+    margin-bottom: 40px;
+
+}
+
+.dashboard-header h1 {
+
+    font-size: 2.8rem;
+
+    margin-bottom: .5rem;
+
+    background: linear-gradient(
+        90deg,
+        var(--purple),
+        var(--blue)
+    );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+}
+
+.dashboard-header p {
+
+    max-width: 600px;
+
+    color: var(--text-secondary);
+
+    line-height: 1.7;
+
+}
+
+/* =======================
+   Stats
+======================= */
+
+.dashboard-stats {
+
+    display: flex;
+
+    gap: 20px;
+
+}
+
+.stat-card {
+
+    min-width: 170px;
+
+    text-align: center;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(12px);
+
+}
+
+.stat-card h2 {
+
+    margin: 0;
+
+    font-size: 2.6rem;
+
+    color: var(--green);
+
+}
+
+.stat-card span {
+
+    color: var(--text-secondary);
+
+}
+
+/* =======================
+   Content Layout
+======================= */
+
+.dashboard-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns: 380px 1fr;
+
+    gap: 30px;
+
+    align-items: start;
+
+}
+
+.dashboard-panel {
+
+    background: rgba(18,23,40,.82);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(18px);
+
+    padding: 28px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.3);
+
+}
+
+.dashboard-panel h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    color: white;
+
+}
+
+/* =======================
+   Responsive
+======================= */
+
+@media (max-width: 900px) {
+
+    .dashboard-content {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .dashboard-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}
+
+/* =======================
+   Animation
+======================= */
+
+@keyframes floatGlow {
+
+    0%,
+    100% {
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            translate(25px,-20px)
+            scale(1.08);
+
+    }
+
+}
+
+.book-form {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+
+.book-list {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(240px,1fr));
+
+    gap:20px;
+
+}
+
+
+.book-card {
+
+    padding:25px;
+
+    border-radius:18px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+
+.book-card:hover {
+
+    transform:translateY(-5px);
+
+    border-color:
+    rgba(55,215,255,.4);
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.3);
+
+}
+
+
+.book-card h3 {
+
+    margin-top:0;
+
+    color:white;
+
+}
+
+
+.book-author {
+
+    color:#37d7ff;
+
+}
+
+
+.book-tag {
+
+    display:inline-block;
+
+    margin:10px 0;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:.8rem;
+
+    background:
+    rgba(156,255,47,.15);
+
+    color:#9cff2f;
+
+}
+
+
+.book-actions {
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+
+.secondary-button,
+.danger-button {
+
+    flex:1;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+
+
+.secondary-button {
+
+    background:#273252;
+
+    color:white;
+
+}
+
+
+.danger-button {
+
+    background:
+    rgba(255,70,70,.2);
+
+    color:#ff8b8b;
+
+}
+
+/* ===========================
+   EDIT BOOK FORM
+=========================== */
+
+
+.edit-book-form {
+
+    padding:20px;
+
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    border:
+    1px solid rgba(55,215,255,.25);
+
+    animation:
+    editAppear .3s ease;
+
+}
+
+
+
+.edit-title {
+
+    margin-top:0;
+
+    margin-bottom:20px;
+
+    font-size:1.4rem;
+
+    color:#22d3ee;
+
+}
+
+
+
+.edit-actions {
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+
+
+.cancel-button {
+
+    flex:1;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.12);
+
+    transition:.25s;
+
+}
+
+
+
+.cancel-button:hover {
+
+    background:
+    rgba(255,255,255,.15);
+
+    transform:
+    translateY(-2px);
+
+}
+
+
+
+.edit-actions .primary-button {
+
+    flex:1;
+
+}
+
+
+
+/* Small animation when edit mode opens */
+
+@keyframes editAppear {
+
+    from {
+
+        opacity:0;
+
+        transform:
+        translateY(10px);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+
+    }
+
+}
