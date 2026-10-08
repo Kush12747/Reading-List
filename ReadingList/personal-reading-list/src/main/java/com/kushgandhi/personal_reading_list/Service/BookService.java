@@ -26,6 +26,11 @@ public class BookService {
 
         Book book = repository.findById(bookId).orElse(null);
 
+        if (book == null) {
+            result.addErrorMessage("Book not found", ResultType.NOT_FOUND);
+            return result;
+        }
+
         if (!book.getUserId().equals(userId)) {
             result.addErrorMessage(
                     "You do not have permission to view this book",
